@@ -70,6 +70,7 @@ export type BlockNoteEditorOptions = {
    */
   onTextCursorPositionChange: (editor: BlockNoteEditor) => void;
   initialContent: PartialBlock[];
+  initialHTML: string;
 
   /**
    * Use default BlockNote font and reset the styles of <p> <li> <h1> elements etc., that are used in BlockNote.
@@ -92,6 +93,16 @@ export class BlockNoteEditor {
   public readonly _tiptapEditor: TiptapEditor & { contentComponent: any };
   private blockCache = new WeakMap<Node, Block>();
 
+  public get getContentHTML(){
+    return this._tiptapEditor.getHTML();
+  }
+  public get getContentText(){
+    return this._tiptapEditor.getText();
+  }
+  public get getContentJSON(){
+    return this._tiptapEditor.getJSON();
+  }
+  
   public get domElement() {
     return this._tiptapEditor.view.dom as HTMLDivElement;
   }
@@ -127,6 +138,7 @@ export class BlockNoteEditor {
         options.onEditorReady?.(this);
         options.initialContent &&
           this.replaceBlocks(this.topLevelBlocks, options.initialContent);
+        
       },
       onUpdate: () => {
         options.onEditorContentChange?.(this);
