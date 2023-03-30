@@ -70,7 +70,11 @@ export type BlockNoteEditorOptions = {
    */
   onTextCursorPositionChange: (editor: BlockNoteEditor) => void;
   initialContent: PartialBlock[];
-  initialHTML: string;
+  
+  /**
+   * The initial html content of the editor, if left empty a normal, blank, editor is shown
+   */
+  initialHTML: string;  
 
   /**
    * Use default BlockNote font and reset the styles of <p> <li> <h1> elements etc., that are used in BlockNote.
@@ -93,16 +97,6 @@ export class BlockNoteEditor {
   public readonly _tiptapEditor: TiptapEditor & { contentComponent: any };
   private blockCache = new WeakMap<Node, Block>();
 
-  public get getContentHTML(){
-    return this._tiptapEditor.getHTML();
-  }
-  public get getContentText(){
-    return this._tiptapEditor.getText();
-  }
-  public get getContentJSON(){
-    return this._tiptapEditor.getJSON();
-  }
-  
   public get domElement() {
     return this._tiptapEditor.view.dom as HTMLDivElement;
   }
@@ -138,7 +132,8 @@ export class BlockNoteEditor {
         options.onEditorReady?.(this);
         options.initialContent &&
           this.replaceBlocks(this.topLevelBlocks, options.initialContent);
-        
+        options.initialHTML &&
+          this._tiptapEditor.commands.setContent(options.initialHTML);
       },
       onUpdate: () => {
         options.onEditorContentChange?.(this);
@@ -186,6 +181,16 @@ export class BlockNoteEditor {
     });
 
     return blocks;
+  }
+
+  public get contentHTML() {
+    return this._tiptapEditor.getHTML();
+  }
+  public get contentText() {
+    return this._tiptapEditor.getText();
+  }
+  public get contentJSON() {
+    return this._tiptapEditor.getJSON();
   }
 
   /**
