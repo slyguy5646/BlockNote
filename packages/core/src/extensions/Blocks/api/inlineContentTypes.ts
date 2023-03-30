@@ -5,6 +5,7 @@ export type Styles = {
   strike?: true;
   textColor?: string;
   backgroundColor?: string;
+
 };
 
 export type ToggledStyles = {
@@ -20,6 +21,11 @@ export type StyledText = {
   text: string;
   styles: Styles;
 };
+export type StyledCode = {
+  type: "code";
+  text: string;
+  styles: Styles;
+};
 
 export type Link = {
   type: "link";
@@ -30,6 +36,7 @@ export type Link = {
 export type PartialLink = Omit<Link, "content"> & {
   content: string | Link["content"];
 };
+
 
 export type InlineContent = StyledText | Link;
 export type PartialInlineContent = StyledText | PartialLink;

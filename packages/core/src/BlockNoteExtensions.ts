@@ -77,7 +77,7 @@ export const getBlockNoteExtensions = (opts: {
 
     // marks:
     Bold,
-    Code,
+    // Code,
     Italic,
     Strike,
     Underline,
@@ -89,6 +89,7 @@ export const getBlockNoteExtensions = (opts: {
 
     // custom blocks:
     ...blocks,
+
 
     Dropcursor.configure({ width: 5, color: "#ddeeff" }),
     History,

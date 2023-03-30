@@ -70,11 +70,11 @@ export type BlockNoteEditorOptions = {
    */
   onTextCursorPositionChange: (editor: BlockNoteEditor) => void;
   initialContent: PartialBlock[];
-  
+
   /**
    * The initial html content of the editor, if left empty a normal, blank, editor is shown
    */
-  initialHTML: string;  
+  initialHTML: string;
 
   /**
    * Use default BlockNote font and reset the styles of <p> <li> <h1> elements etc., that are used in BlockNote.
@@ -165,7 +165,11 @@ export class BlockNoteEditor {
     this._tiptapEditor = new Editor(tiptapOptions) as Editor & {
       contentComponent: any;
     };
+
+  
   }
+
+ 
 
   /**
    * Gets a snapshot of all top-level (non-nested) blocks in the editor.

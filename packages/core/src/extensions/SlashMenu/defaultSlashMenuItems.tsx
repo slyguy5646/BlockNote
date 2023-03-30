@@ -84,6 +84,14 @@ export const defaultSlashMenuItems: BaseSlashMenuItem[] = [
       }),
     ["p"]
   ),
+  new BaseSlashMenuItem(
+    "Code",
+    (editor) =>
+      insertOrUpdateBlock(editor, {
+        type: "codeSection",
+      }),
+    ["code"]
+  ),
 
   //     replaceRangeWithNode(editor, range, node);
 

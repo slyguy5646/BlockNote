@@ -8,6 +8,7 @@ import {
   RiListOrdered,
   RiListUnordered,
   RiText,
+  RiCodeSSlashLine
 } from "react-icons/ri";
 
 const extraFields: Record<
@@ -44,6 +45,12 @@ const extraFields: Record<
     hint: "Used to display an unordered list",
     shortcut: formatKeyboardShortcut("Mod-Alt-9"),
   },
+  Code: {
+    group: "Other",
+    icon: <RiCodeSSlashLine size={18} />,
+    hint: "Used to display an unordered list",
+    shortcut: formatKeyboardShortcut("Mod-Alt-9"),
+  },
   Paragraph: {
     group: "Basic blocks",
     icon: <RiText size={18} />,
@@ -54,7 +61,7 @@ const extraFields: Record<
 
 export const defaultReactSlashMenuItems: ReactSlashMenuItem[] =
   defaultSlashMenuItems.map(
-    (item) =>
+    (item: any) =>
       new ReactSlashMenuItem(
         item.name,
         item.execute,
